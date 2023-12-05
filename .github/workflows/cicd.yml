@@ -32,15 +32,15 @@ jobs:
 
     - name: Build project
       env:
-        VITE_APP_PUBLIC_URL: /https://github.com/bella-cockrell/ci-cd-test/
+        VITE_APP_PUBLIC_URL: https://github.com/bella-cockrell/ci-cd-test
       run: npm run build
 
-    # - name: Uploading build files
-    #     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    #     uses: actions/upload-artifact@v2
-    #     with:
-    #       name: artifact
-    #       path: ./dist
+    - name: Uploading build files
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: actions/upload-artifact@v2
+      with:
+          name: artifact
+          path: ./dist
 
     # TODO: Deploy to github pages
   deploy-to-gp:
@@ -49,6 +49,12 @@ jobs:
       permissions:
         contents: write
       steps:
+        - name: Downloading artifact
+          if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+          uses: actions/download-artifact@v2
+          with:
+            name: artifact
+            path: ./dist
         - name: Deploying to gh-pages
           uses: peaceiris/actions-gh-pages@v3
           with:
