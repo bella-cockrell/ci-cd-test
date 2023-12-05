@@ -31,9 +31,23 @@ jobs:
     # TODO: Run build here
 
     - name: Build project
+      env:
+        VITE_APP_PUBLIC_URL: /https://github.com/bella-cockrell/ci-cd-test/
       run: npm run build
 
     # TODO: Deploy to github pages
+  deploy-to-gp:
+      name: Deploy
+      runs-on: ubuntu-22.04
+      permissions:
+        contents: write
+      steps:
+        - name: Deploying to gh-pages
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./dist
+        
 
 ## TIP
 ## to conditionally run a job or a step use the if key.
