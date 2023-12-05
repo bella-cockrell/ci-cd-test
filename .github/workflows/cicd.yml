@@ -36,10 +36,16 @@ jobs:
           path: ./dist
 
   build-and-deploy:
+#   steps:
+#     - name: Deploying to gh-pages
+#       uses: peaceiris/actions-gh-pages@v3
+#       with:
+#         github_token: ${{ secrets.GITHUB_TOKEN }}
+#         publish_dir: ./dist
     permissions:
       contents: write
     env:
-      VITE_APP_PUBLIC_URL: /bella-cockrell/ci-cd-test/
+      VITE_APP_PUBLIC_URL: /ci-cd-test/
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     steps:
