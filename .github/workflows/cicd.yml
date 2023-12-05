@@ -35,6 +35,13 @@ jobs:
         VITE_APP_PUBLIC_URL: /https://github.com/bella-cockrell/ci-cd-test/
       run: npm run build
 
+    # - name: Uploading build files
+    #     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    #     uses: actions/upload-artifact@v2
+    #     with:
+    #       name: artifact
+    #       path: ./dist
+
     # TODO: Deploy to github pages
   deploy-to-gp:
       name: Deploy
