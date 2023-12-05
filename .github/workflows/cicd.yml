@@ -39,7 +39,7 @@ jobs:
     permissions:
       contents: write
     env:
-      VITE_APP_PUBLIC_URL: https://github.com/bella-cockrell/ci-cd-test
+      VITE_APP_PUBLIC_URL: /bella-cockrell/ci-cd-test/
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     steps:
